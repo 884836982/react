@@ -1,0 +1,28 @@
+.menu-list {
+    width: 100%;
+    border-right:0px !important;
+    .supervise-back {
+        font-size: 16px;
+        font-family: PingFangSC-Medium, PingFang SC, sans-serif;
+        font-weight: 500;
+        color: #fff;
+        line-height: 90px;
+        height: 90px;
+        background: url("../img/header.png") no-repeat;
+        background-size:cover;
+        width:201px;
+        text-align: center;
+        .supervise {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        vertical-align: middle;
+        margin-right: 9px;
+        margin-top: 2px;
+        }
+        span {
+        display: inline-block;
+        vertical-align: middle;
+        }
+    }
+}

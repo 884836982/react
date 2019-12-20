@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="11px" viewBox="0 0 15 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Mask</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M16.6194336,5.56826172 C16.6194336,5.74638672 16.5600586,5.92636719 16.4413086,6.07666016 L10.1160156,13.9401367 C9.96201172,14.13125 9.73007813,14.2425781 9.48330078,14.2425781 C9.23837891,14.2425781 9.00458984,14.13125 8.85244141,13.9401367 L2.56054688,6.11005859 C2.28037109,5.76123047 2.33603516,5.25097656 2.68486328,4.97080078 C3.03369141,4.690625 3.54394531,4.74628906 3.82412109,5.09511719 L9.48515625,12.1384766 L15.1777344,5.05986328 C15.4579102,4.71103516 15.9681641,4.65537109 16.3169922,4.93554687 C16.5155273,5.09697266 16.6194336,5.33076172 16.6194336,5.56826172 Z" id="path-1"></path>
+    </defs>
+    <g id="基础元素" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Select/_Icon/Down" transform="translate(-2.000000, -4.000000)">
+            <g id="Group">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill-opacity="0.25" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
