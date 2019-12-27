@@ -4,7 +4,8 @@ import React ,{Component, Fragment} from "react";
 import { Layout } from 'antd';
 import MenuList from '../../components/menu/menulist'
 import Order from '../order/order'
-import Login from '../login/login';
+import Classify from '../classify/classify'
+import Bill from '../bill/bill';
 import {HashRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
 import "../../common/css/home.scss"
 const { Header, Footer, Sider, Content } = Layout;
@@ -28,36 +29,23 @@ class Home extends Component{
                     </div>
                     </Header>
                     <Layout className="container">
-                        <Sider className="sidebar-container">
-                            <MenuList></MenuList>
-                        </Sider>
-                        <Content class="content-container">
-                            <Router>
+                        <Router>
+                            <Sider className="sidebar-container">
+                                <MenuList></MenuList>
+                            </Sider>
+                            <Content className="content-container">
                                 <div>
-                                <Switch>
-                                    <Route path="/order" component={Order}></Route>
-                                    <Route path="/login" component={Login}></Route>
-                                    <Redirect path="/home" to="/order"></Redirect>
-                                </Switch>
+                                    <Switch>
+                                        <Route path="/order" component={Order}></Route>
+                                        <Route path="/classify" component={Classify}></Route>
+                                        <Route path="/bill" component={Bill}></Route>
+                                        <Redirect path="/" to="/order"></Redirect>
+                                    </Switch>
                                 </div>
-                            </Router>
-                        </Content>
+                            </Content>
                         {/* <Sider>right sidebar</Sider> */}
+                        </Router>
                     </Layout>
-                    {/* <el-container class="container">
-                    <el-aside class="sidebar-container">
-                        <!-- <transition-group appear name="fade" mode="out-in"> -->
-                        <router-view name="sidebar"></router-view>
-                        <!-- </transition-group> -->
-                    </el-aside>
-                    <el-container class="content-container">
-                        <el-main class="main-container">
-                        <!-- <transition appear name="fade" mode="out-in"> -->
-                        <router-view :key="$route.path"></router-view>
-                        <!-- </transition> -->
-                        </el-main>
-                    </el-container>
-                    </el-container> */}
                     <Footer className="footer">
                     <p className="footer-top">
                         北京&nbsp;&nbsp;&nbsp;地址：XXX&nbsp;&nbsp;&nbsp;关于我们

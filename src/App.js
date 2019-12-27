@@ -1,5 +1,6 @@
 import React ,{Component, Fragment}from 'react';
 import Home from './views/home/home';
+import Order from './views/order/order'
 import Login from './views/login/login';
 import {HashRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
 // import {Provider} from 'react-redux'
@@ -12,15 +13,7 @@ class App extends Component{
     return (
       // <Provider store={store}>
       <Fragment>
-        <Router>
-          <div>
-            <Switch>
-              <Route path="/home" component={Home}></Route>
-              <Route path="/login" component={Login}></Route>
-              <Redirect path="/" to="/home"></Redirect>
-            </Switch>
-          </div>
-        </Router>
+        <Home></Home>
       </Fragment>
       // </Provider>
     );

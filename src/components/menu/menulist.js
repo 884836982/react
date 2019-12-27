@@ -1,49 +1,54 @@
 import React,{Component,Fragment} from 'react';
 import { Menu, Icon } from 'antd';
 import "../../common/css/menulist.scss"
-const { SubMenu } = Menu;
-
+// const { SubMenu } = Menu;
+import {NavLink} from 'react-router-dom'
 class MenuList extends Component{
-    render(){
+    render(){ 
         return (
             <Fragment>
                 <Menu
                 mode="inline"
                 className="menu-list"
+                defaultSelectedKeys={["family"]}
+                onClick={selectMenu}
                 >
                 <div className="supervise-back">
                     <img className="supervise" src={require("../../common/img/supervise.png")} />
                     <span>运营后台</span>
                 </div>
-                <SubMenu
-                key="sub1"
-                title={
-                    <span>
-                    <Icon type="mail" />
-                    <span>订单查询</span>
-                    </span>
-                }
-                >
-                </SubMenu>
-                    <SubMenu
-                    key="sub2"
-                    title={
-                        <span>
-                        <Icon type="appstore" />
-                        <span>Navigation Two</span>
-                        </span>
-                    }
-                    >
-                    {/* <Menu.Item key="5">Option 5</Menu.Item>
-                    <Menu.Item key="6">Option 6</Menu.Item> */}
-                    <SubMenu key="sub3" title="Submenu">
-                        {/* <Menu.Item key="7">Option 7</Menu.Item>
-                        <Menu.Item key="8">Option 8</Menu.Item> */}
-                    </SubMenu>
-                </SubMenu>
+                    <Menu.Item key="family">
+                        <NavLink to="/order">
+                            <Icon type="pie-chart" />
+                            <span>家庭管理</span>
+                        </NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="classification">
+                    <NavLink to="/classify">
+                        <Icon type="desktop" />
+                        <span>分类管理</span>
+                        </NavLink>
+                    </Menu.Item> 
+                    <Menu.Item key="bill">
+                        <NavLink to="/bill">
+                        <Icon type="inbox" />
+                        <span>账单管理</span>
+                        </NavLink>
+                    </Menu.Item>
                 </Menu>
             </Fragment>
         )
+    };
+    componentWillMount(){
+
+    }
+}
+function selectMenu(e){
+    console.log();
+    switch(e.key){
+        case 'family':
+
+
     }
 }
 export default MenuList;
