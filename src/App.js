@@ -1,22 +1,46 @@
 import React ,{Component, Fragment}from 'react';
 import Home from './views/home/home';
-import Order from './views/order/order'
-import Login from './views/login/login';
-import {HashRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
+import Login from './views/login/login'
 // import {Provider} from 'react-redux'
 // import store from './store'
 import "antd/dist/antd.css"
 import "./common/css/reset.css"
 
 class App extends Component{
+  constructor(){
+    super()
+    this.state = {
+      isLogin:false
+    }
+  }
   render(){
-    return (
-      // <Provider store={store}>
-      <Fragment>
-        <Home></Home>
-      </Fragment>
-      // </Provider>
-    );
+    let {isLogin} = this.state
+    console.log(isLogin)
+    if(isLogin){
+      return (
+        // <Provider store={store}>
+        <Fragment>
+          <Home></Home>
+          <Login></Login>
+        </Fragment>
+        // </Provider>
+      );
+    }else{
+      return (
+        <Fragment>
+          <Login></Login>
+        </Fragment>
+      )
+    }
+    
+  }
+  componentWillMount(){
+    console.log(localStorage.getItem('token'))
+    if(localStorage.getItem('token')){
+      this.state.isLogin = true
+    }else{
+      this.state.isLogin = false
+    }
   }
 }
 export default App;

@@ -23,7 +23,7 @@ class Home extends Component{
                     <div className="login">
                         <span className="title">运营后台</span>
                         <p className="user-name">
-                            <img src={require("../../common/img/initAvator.svg")} alt /><span>李四</span>
+                            <img src={require("../../common/img/initAvator.svg")} alt="图片加载失败" /><span>李四</span>
                         </p>
                         <span className="login-out">退出</span>
                     </div>
