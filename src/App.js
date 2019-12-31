@@ -14,12 +14,9 @@ class App extends Component{
     let {isLogin} = this.state
     if(isLogin){
       return (
-        // <Provider store={store}>
           <Fragment>
             <Home></Home>
-            {/* <Login></Login> */}
           </Fragment>
-        // </Provider>
       );
     }else{
       return (

@@ -45,7 +45,6 @@ class Home extends Component{
                                         </Switch>
                                     </div>
                                 </Content>
-                            {/* <Sider>right sidebar</Sider> */}
                             </Router>
                         </Provider>
                     </Layout>

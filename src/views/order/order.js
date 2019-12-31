@@ -7,8 +7,6 @@ const { RangePicker } = DatePicker;
 class Order extends Component{
     constructor(){
         super();
-        // this.getFamilyList = this.getFamilyList.bind(this);
-        // this.handleClick = this.handleClick.bind(this);  
     }
     render(){
         let { columns, data} = this.props
