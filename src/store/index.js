@@ -4,5 +4,5 @@ import reduxPromise from 'redux-promise-middleware';
 let reducers = combineReducers({
     reducer
 })
-const store = createStore(reducers,applyMiddleware(reduxPromise())) 
+const store = createStore(reducers,applyMiddleware(reduxPromise))
 export default store;
