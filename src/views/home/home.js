@@ -36,7 +36,7 @@ class Home extends Component{
                                     <MenuList></MenuList>
                                 </Sider>
                                 <Content className="content-container">
-                                    <div>
+                                    <div className="content-list">
                                         <Switch>
                                             <Route path="/order" component={Order}></Route>
                                             <Route path="/classify" component={Classify}></Route>

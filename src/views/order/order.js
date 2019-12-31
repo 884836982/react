@@ -2,8 +2,8 @@ import React,{Component,Fragment} from 'react';
 import { Row,Form,Input,Table,DatePicker,Button  } from 'antd';
 import {getFamily} from '../../store/action/actionCreator'
 import {connect} from 'react-redux'
+import "../../common/css/order.scss"
 const { RangePicker } = DatePicker;
-
 class Order extends Component{
     constructor(){
         super();
