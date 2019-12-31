@@ -1,20 +1,17 @@
 import React,{Component,Fragment} from 'react';
 import { Row,Form,Input,Table,DatePicker,Button  } from 'antd';
 import {getFamily} from '../../store/action/actionCreator'
+import {connect} from 'react-redux'
 const { RangePicker } = DatePicker;
 
 class Order extends Component{
     constructor(){
         super();
-        this.state={
-            columns:[],
-            data:[]
-        }
-        this.getFamilyList = this.getFamilyList.bind(this);
+        // this.getFamilyList = this.getFamilyList.bind(this);
         // this.handleClick = this.handleClick.bind(this);  
     }
     render(){
-        let { columns, data} = this.state
+        let { columns, data} = this.props
         return (
             <Fragment>
                 <div className="supervise-container">
@@ -65,7 +62,7 @@ class Order extends Component{
                                 />
                                 </Form.Item>
                                 <Form.Item >
-                                <Button onClick={this.getFamilyList} >查询</Button>
+                                <Button onClick={this.props.getFamilyList} >查询</Button>
                                 </Form.Item>
                             </Row>
                             </Form>
@@ -76,8 +73,14 @@ class Order extends Component{
             </Fragment>
         )
     }
-    getFamilyList(){
-        getFamily()
-    }
 }
-export default Order;
+const mapDispatchToProps = (dispatch)=>({
+    getFamilyList(){
+        getFamily(dispatch);
+    }
+})
+const mapStateToProps = (state)=>({
+    columns:state.reducer.columns,
+    data:state.reducer.data
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Order);

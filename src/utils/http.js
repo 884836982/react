@@ -29,7 +29,7 @@ import axios from 'axios';
 // 创建axios实例常量配置
 const axiosCreate = {
   // 根据环境配置后端api的url
-  baseURL: process.env.API_URL,
+  baseURL: process.env.REACT_APP_API_URL,
   // 请求超时时间
   timeout: 30000,
   // 是否允许后端设置cookie跨域，一般无需改动

@@ -1,22 +1,14 @@
-const defaultState={
-    offset:"",
-    entries:[],
-    banner:[]
+const defaultState = {
+    columns:[],
+    data:[]
 }
 export default(state=defaultState,action)=>{
-    switch(action.type){
-        case "FIND_OFFSET_FULFILLED":
-            let offsetState = {...state};
-            offsetState.offset = action.payload.name;
-            return offsetState;
-        case "HOME_ENTRIES_FULFILLED":
-            let entriesState = {...state};
-            entriesState.entries = action.payload;
-            return entriesState;
-        case "HOME_BANNER_FULFILLED":
-            let bannerState = {...state};
-            bannerState.banner = action.payload;
-            return bannerState;
+    switch (action.type){
+        case "FAMILY_LIST_FULFILLED":
+            let data = {...state};
+            debugger;
+            data = action.payload;
+            return data;
     }
-    return state;     
+    return state
 }

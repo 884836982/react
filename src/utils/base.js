@@ -9,6 +9,7 @@ console.log(React)
  */
 export function sendGet(url, params = {}) {
 //   Vue.loading.on();
+console.log(url);
   return http.get(url, { params }).then(response => {
     // Vue.loading.off();
     return response.data;
