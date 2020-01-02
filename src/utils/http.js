@@ -15,7 +15,7 @@ export default http;
 // 引入axios用来封装http请求
 // import Vue from 'vue';
 import axios from 'axios';
-// import qs from 'qs';
+import qs from 'qs';
 // import Raven from 'raven-js';
 // import {
   // HTTP_STATUS_MSG_404,
@@ -29,7 +29,7 @@ import axios from 'axios';
 // 创建axios实例常量配置
 const axiosCreate = {
   // 根据环境配置后端api的url
-  baseURL: process.env.REACT_APP_API_URL,
+//   baseURL: process.env.REACT_APP_API_URL,
   // 请求超时时间
   timeout: 30000,
   // 是否允许后端设置cookie跨域，一般无需改动
@@ -67,7 +67,7 @@ http.interceptors.request.use(
       : '';
     config.headers['code'] = localStorage.getItem('travelCode') ? localStorage.getItem('travelCode'):'';
     if (config.method === 'post' || config.method === 'put') {
-    //   config.data = qs.stringify(config.data);
+      config.data = qs.stringify(config.data);
       // 对post和put进行数据字符串化处理，若Content-Type:application/json则不需要
       config.headers['Content-Type'] = postHeaders;
     }
