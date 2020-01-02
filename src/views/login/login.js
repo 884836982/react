@@ -71,6 +71,7 @@ class Login extends Component{
     componentDidUpdate(newProps,newState){
         console.log(newProps,newState)
     }
+    // 登录
     login(){
         let params = {
             username:this.state.username,
@@ -80,16 +81,16 @@ class Login extends Component{
             console.log(res);
         })
     }
+    // 密码输入
     changePsd(e){
-        console.log(e.target.value)
         this.setState({
             password:e.target.value
         },()=>{
             console.log(this.state.password);
         })
     }
+    // 用户名输入
     changeUse(e){
-        console.log(e)
         this.setState({
             username:e.target.value
         },()=>{

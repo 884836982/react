@@ -9,12 +9,12 @@ export const getFamily = (dispatch,params) => {
     dispatch({
         type:actionType.getFamilyList,
         payload:new Promise(resolve=>{
-            debugger;
-            sendGet("/user/getUserList", params)
-            .then((res)=>res.json())
-            .then((data)=>{
-                console.log(data);
-                resolve(data)
+            sendGet("/api/ding/user/groups", params)
+            // .then((res)=>res.json())
+            .then((res)=>{
+                console.log(res)
+                // console.log(data);
+                // resolve(data)
             })
         })
     })
