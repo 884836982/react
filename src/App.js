@@ -6,32 +6,39 @@ import "antd/dist/antd.css"
 import "./common/css/reset.css"
 class App extends Component{
   constructor(){
-    super()
+    super();
     this.state = {
       isLogin:false
     }
   }
   render(){
     let {isLogin} = this.state
+    console.log(isLogin);
       return (
           <Fragment>
             <Router>
               <Switch>
                 <Route path="/home" component={Home}></Route>
                 <Route path="/login" component={Login}></Route>
-                <Redirect exact path="/" to="/home"></Redirect>
+                <Redirect exact  path="/" to="/home"></Redirect>
               </Switch>
             </Router>
-            <Home></Home>
+            <Home style={{display:isLogin?'block':'none'}}></Home>
           </Fragment>
       );
   }
   componentWillMount(){
     if(localStorage.getItem('token')){
-      this.state.isLogin = true
+      this.setState({
+        isLogin:true
+      })
+      // this.state.isLogin = true
       // this.props.history.push({path:'/home'})
     }else{
-      this.state.isLogin = false
+      this.setState({
+        isLogin:false
+      })
+      // this.state.isLogin = false
       // this.props.history.push({path:'/login'})
     }
   }
