@@ -15,10 +15,8 @@ const { Header, Footer, Sider, Content } = Layout;
 class Home extends Component{
     constructor(){
         super();
-        this.logout = this.logout.bind(this);
     }
     render(){
-        // let {userName} = this.props;
         return (
             <Fragment>
                 <div className="page">
@@ -68,17 +66,5 @@ class Home extends Component{
             </Fragment>  
         );
     }
-    logout(){
-        localStorage.setItem('token','')
-        // store.dispatch(push({path:'/login'}))
-        this.props.history.push({pathname:'/classify'})
-        // console.log(this,this.props.history)
-    }
 }
-// const mapDispatchToProps = (dispatch)=>({
-//     logout() {
-//         logout(dispatch)
-//     }
-// })
-// export default connect(mapStateToProps,mapDispatchToProps)(Home);
 export default Home;
