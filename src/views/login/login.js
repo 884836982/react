@@ -1,6 +1,7 @@
 import React,{Component,Fragment} from 'react';
 import "../../common/css/login.scss"
 import {login} from '../../store/action/actionCreator'
+import { Link } from 'react-router-dom';
 import {Input} from 'antd'
 class Login extends Component{
     constructor(){
@@ -51,9 +52,9 @@ class Login extends Component{
                         />
                     </div>
                     <p className="forget-password">忘记密码?</p>
-                    <button className={username && password ? 'login-in' : 'login'} onClick={this.login}>
+                    <Link to="/order"><button className={username && password ? 'login-in' : 'login'} onClick={this.login}>
                         登录
-                    </button>
+                    </button></Link>
                     </section>
                     <footer className="footer">
                     <p className="footer-top">

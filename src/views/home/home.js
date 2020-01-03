@@ -7,6 +7,7 @@ import Order from '../order/order'
 import Classify from '../classify/classify'
 import Bill from '../bill/bill';
 import {HashRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import "../../common/css/home.scss"
 import {Provider} from 'react-redux'
 import store from '../../store'
@@ -21,6 +22,7 @@ class Home extends Component{
         return (
             <Fragment>
                 <div className="page">
+                <Router>
                     <Header className="header">
                         <h1 className="header-title">
                             <i className="header-icon"></i><span>家庭记账平台</span>
@@ -30,12 +32,12 @@ class Home extends Component{
                             <p className="user-name">
                                 <img src={require("../../common/img/initAvator.svg")} alt="图片加载失败" /><span>李四</span>
                             </p>
-                            <span className="login-out" onClick={this.logout}>退出</span>
+                            <Link to="/login"><span className="login-out">退出</span></Link>
                         </div>
                     </Header>
                     <Layout className="container">
                         <Provider store={store}>
-                            <Router>
+                            
                                 <Sider className="sidebar-container">
                                     <MenuList></MenuList>
                                 </Sider>
@@ -49,9 +51,10 @@ class Home extends Component{
                                         </Switch>
                                     </div>
                                 </Content>
-                            </Router>
+                            
                         </Provider>
                     </Layout>
+                    </Router>
                     <Footer className="footer">
                         <p className="footer-top">
                             北京&nbsp;&nbsp;&nbsp;地址：XXX&nbsp;&nbsp;&nbsp;关于我们
@@ -67,8 +70,15 @@ class Home extends Component{
     }
     logout(){
         localStorage.setItem('token','')
-        // this.props.history.push({path:'/login'})
+        // store.dispatch(push({path:'/login'}))
+        this.props.history.push({pathname:'/classify'})
         // console.log(this,this.props.history)
     }
 }
+// const mapDispatchToProps = (dispatch)=>({
+//     logout() {
+//         logout(dispatch)
+//     }
+// })
+// export default connect(mapStateToProps,mapDispatchToProps)(Home);
 export default Home;
