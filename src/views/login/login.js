@@ -74,11 +74,15 @@ class Login extends Component{
     // 登录
     login(){
         let params = {
-            username:this.state.username,
-            password:this.state.password
+            userName:this.state.username,
+            passWord:this.state.password
         }
         login(params).then((res)=>{
             console.log(res);
+            localStorage.setItem('token',res.data);
+            localStorage.setItem('name',res.msg);
+            console.log(this.props)
+            // this.props.history.push({path:'/order'})
         })
     }
     // 密码输入

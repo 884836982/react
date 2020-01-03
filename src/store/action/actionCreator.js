@@ -9,7 +9,7 @@ export const getFamily = (dispatch,params) => {
     dispatch({
         type:actionType.getFamilyList,
         payload:new Promise(resolve=>{
-            sendGet("/api/ding/user/groups", params)
+            sendGet("/admin/user/getUserList", params)
             // .then((res)=>res.json())
             .then((res)=>{
                 console.log(res)

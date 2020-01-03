@@ -1,4 +1,5 @@
 import React ,{Component, Fragment}from 'react';
+import {HashRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
 import Home from './views/home/home';
 import Login from './views/login/login'
 import "antd/dist/antd.css"
@@ -12,25 +13,26 @@ class App extends Component{
   }
   render(){
     let {isLogin} = this.state
-    if(isLogin){
       return (
           <Fragment>
+            <Router>
+              <Switch>
+                <Route path="/home" component={Home}></Route>
+                <Route path="/login" component={Login}></Route>
+                <Redirect exact path="/" to="/home"></Redirect>
+              </Switch>
+            </Router>
             <Home></Home>
           </Fragment>
       );
-    }else{
-      return (
-        <Fragment>
-          <Login></Login>
-        </Fragment>
-      )
-    }
   }
   componentWillMount(){
     if(localStorage.getItem('token')){
       this.state.isLogin = true
+      // this.props.history.push({path:'/home'})
     }else{
       this.state.isLogin = false
+      // this.props.history.push({path:'/login'})
     }
   }
 }

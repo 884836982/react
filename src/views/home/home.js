@@ -12,6 +12,10 @@ import {Provider} from 'react-redux'
 import store from '../../store'
 const { Header, Footer, Sider, Content } = Layout;
 class Home extends Component{
+    constructor(){
+        super();
+        this.logout = this.logout.bind(this);
+    }
     render(){
         // let {userName} = this.props;
         return (
@@ -26,7 +30,7 @@ class Home extends Component{
                             <p className="user-name">
                                 <img src={require("../../common/img/initAvator.svg")} alt="图片加载失败" /><span>李四</span>
                             </p>
-                            <span className="login-out">退出</span>
+                            <span className="login-out" onClick={this.logout}>退出</span>
                         </div>
                     </Header>
                     <Layout className="container">
@@ -38,10 +42,10 @@ class Home extends Component{
                                 <Content className="content-container">
                                     <div className="content-list">
                                         <Switch>
-                                            <Route path="/order" component={Order}></Route>
+                                            <Route exact path="/order" component={Order}></Route>
                                             <Route path="/classify" component={Classify}></Route>
                                             <Route path="/bill" component={Bill}></Route>
-                                            <Redirect path="/" to="/order"></Redirect>
+                                            <Redirect exact path="/home" to="/order"></Redirect>
                                         </Switch>
                                     </div>
                                 </Content>
@@ -60,6 +64,11 @@ class Home extends Component{
                 </div>
             </Fragment>  
         );
+    }
+    logout(){
+        localStorage.setItem('token','')
+        // this.props.history.push({path:'/login'})
+        // console.log(this,this.props.history)
     }
 }
 export default Home;
