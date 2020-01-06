@@ -56,3 +56,7 @@ export const updateFamily = (dispatch, params) => {
 export const deleteFamily = (params) => sendPost("/admin/user/del", params);
 // 新增成员
 export const addFamily = (params) => sendPost("/admin/user/add", params);
+
+// 分类管理
+//获取账单大类
+export const getClassifyList = (params) => sendPost('/admin/type/getBillTypes',params);
