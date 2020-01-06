@@ -15,6 +15,9 @@ $background:#fff;
         padding-left: 20px;
         min-width: 960px;
         padding-right: 20px;
+        .add-btn{
+            margin-right:10px;
+        }
     }
     .nav-container,
     .family-detail {
@@ -96,5 +99,31 @@ $background:#fff;
     }
     .ant-form-item {
         display: flex;
+    }
+    .update-btn{
+        color:#52c41a;
+        cursor: pointer;
+        text-decoration: underline;
+        margin-right:10px;
+    }
+    .delete-btn{
+        color:red;
+        text-decoration: underline;
+        cursor:pointer;
+    }
+}
+.modal{
+    .modal-form{
+        display:flex;
+        align-items: center;
+        margin-bottom:10px;
+        .modal-title{
+            width:80px;
+            text-align:right;
+            margin-right:20px;
+        }
+        .modal-content{
+            flex:1;
+        }
     }
 }

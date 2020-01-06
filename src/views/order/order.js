@@ -5,7 +5,6 @@ import {getFamily,detailFamily,addFamily,deleteFamily,updateFamily} from '../../
 import {connect} from 'react-redux'
 import "../../common/css/order.scss"
 import 'moment/locale/zh-cn';
-const { RangePicker } = DatePicker;
 const { Option } = Select;
 const { confirm } = Modal;
 moment.locale('zh-cn');
@@ -67,8 +66,8 @@ class Order extends Component{
                 render(text, record) {
                     return (
                         <Fragment>
-                            <span onClick={() =>{props.detailFamily(record.userId)} } >修改</span>
-                            <span onClick={()=>Order._this.showDeleteConfirm(record.userId)}>删除</span>
+                            <span className="update-btn" onClick={() =>{props.detailFamily(record.userId)} } >修改</span>
+                            <span className="delete-btn" onClick={()=>Order._this.showDeleteConfirm(record.userId)}>删除</span>
                         </Fragment>
                     )
                 }
@@ -107,30 +106,6 @@ class Order extends Component{
                             label-width="0"
                             >
                             <Row type="flex" justify="space-between">
-                                {/* <Form.Item label="教学点:">
-                                <Input
-                                    defaultValue=""
-                                    placeholder="请输入教学点"
-                                />
-                                    <i className="supervise-search" slot="suffix" >
-                                    </i>
-                                </Form.Item >
-                                <Form.Item label="教师姓名:">
-                                <Input
-                                    defaultValue=""
-                                    placeholder="请输入教师姓名"
-                                />
-                                    <i className="supervise-search" slot="suffix" >
-                                    </i>
-                                </Form.Item>
-                                <Form.Item label="结算金额:">
-                                <Input
-                                    defaultValue=""
-                                    placeholder="请输入结算金额"
-                                />
-                                </Form.Item> */}
-                            </Row>
-                            <Row type="flex" justify="space-between">
                                 {/* <Form.Item label="法律主体:">
                                 <Input
                                     placeholder="请输入法律主体"
@@ -146,8 +121,8 @@ class Order extends Component{
                                 />
                                 </Form.Item> */}
                                 <Form.Item >
-                                <Button onClick={this.addFamily.bind(this,'add')} >新增</Button>
-                                <Button onClick={this.props.getFamilyList} >查询</Button>
+                                    <Button type="primary" className="add-btn" onClick={this.addFamily.bind(this,'add')} >新增</Button>
+                                    <Button  type="primary" onClick={this.props.getFamilyList} >查询</Button>
                                 </Form.Item>
                             </Row>
                             </Form>
@@ -162,21 +137,39 @@ class Order extends Component{
                     okText = "确定"
                     onOk={this.Sure.bind(this)}
                     onCancel={()=>this.setState({visible:false})}
+                    className="modal"
                     >
-                    <p style={{display:title=='新增'?'block':'none'}}>用户名:<Input  onChange={this.handleChange.bind(this,'userName')} value={userName} /><span></span></p>
-                    <p>姓名:<Input  onChange={this.handleChange.bind(this,'name')} value={name} /><span></span></p>
-                    <p>性别:
-                        <Select style={{ width: 120 }} value={sex==1?'女':'男'} onChange={this.handleChange.bind(this,'sex')}>
-                        <Option value="1">女</Option>
-                        <Option value="2">男</Option>
+                    <div className="modal-form" style={{display:title=='新增'?'flex':'none'}}>
+                        <span className="modal-title">用户名:</span>
+                        <Input className="modal-content" onChange={this.handleChange.bind(this,'userName')} value={userName} />
+                    </div>
+                    <div className="modal-form">
+                        <span className="modal-title">姓名:</span>
+                        <Input className="modal-content" onChange={this.handleChange.bind(this,'name')} value={name} />
+                    </div>
+                    <div className="modal-form">
+                        <span className="modal-title">性别:</span>
+                        <Select  style={{ width: 120 }} value={sex==1?'女':'男'} onChange={this.handleChange.bind(this,'sex')}>
+                            <Option value="1">女</Option>
+                            <Option value="2">男</Option>
                         </Select>
-                    </p>
-                    <p>密码:<Input  onChange={this.handleChange.bind(this,'passWord')} value={passWord}/></p>
-                    <p>出生日期:
-                    <DatePicker value={moment(birthday, 'YYYY-MM-DD')} format={'YYYY-MM-DD'} onChange={this.handleChange.bind(this,'birthday')} />
-                        </p>
-                    <p>联系方式:<Input   onChange={this.handleChange.bind(this,'phone')} value={phone} /></p>
-                    <p>备注:<Input type="textarea"  onChange={this.handleChange.bind(this,'mark')} value={mark} /></p>
+                    </div>
+                    <div className="modal-form">
+                        <span className="modal-title">密码:</span>
+                        <Input className="modal-content" onChange={this.handleChange.bind(this,'passWord')} value={passWord}/>
+                    </div>
+                    <div className="modal-form">
+                        <span className="modal-title">出生日期:</span>
+                        <DatePicker placeholder="请选择日期" value={birthday?moment(birthday,'YYYY-MM-DD'):null} format={'YYYY-MM-DD'} onChange={this.handleChange.bind(this,'birthday')} />
+                    </div>
+                    <div className="modal-form">
+                        <span className="modal-title">联系方式:</span>
+                        <Input className="modal-content"  onChange={this.handleChange.bind(this,'phone')} value={phone} />
+                    </div>
+                    <div className="modal-form">
+                        <span className="modal-title">备注:</span>
+                        <Input className="modal-content" type="textarea"  onChange={this.handleChange.bind(this,'mark')} value={mark} />
+                    </div>
                 </Modal>
             </Fragment>
         )
@@ -204,7 +197,11 @@ class Order extends Component{
         if(val == 'sex'){
             Detail[val] = e
         }else if(val == 'birthday'){
-            Detail[val] = moment(e,'YYYY-MM-DD') 
+            if(format(moment(e),'YYYY-MM-DD')=='NaN-NaN-NaN'){
+                Detail[val] = null;
+            }else{
+                Detail[val] = format(e,'YYYY-MM-DD');
+            }
         }else{
             Detail[val] = e.target.value
         }
@@ -215,7 +212,7 @@ class Order extends Component{
             name:'',
             passWord:'',
             sex:2,
-            birthday:new Date(),
+            birthday:null,
             phone:'',
             mark:'',
             userName:'',
@@ -239,7 +236,6 @@ class Order extends Component{
             })
           },
           onCancel() {
-            console.log('Cancel');
           },
         });
     }

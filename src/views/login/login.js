@@ -4,8 +4,8 @@ import {login} from '../../store/action/actionCreator'
 import { Link } from 'react-router-dom';
 import {Input} from 'antd'
 class Login extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             username: "",
             password: "",
@@ -25,7 +25,7 @@ class Login extends Component{
                  <div className="login">
                     <header>
                     <p className="left">
-                        <span>教师基地平台</span>
+                        <span>家庭记账平台</span>
                         <i>欢迎登录</i>
                     </p>
                     <p className="right">
@@ -69,8 +69,10 @@ class Login extends Component{
             </Fragment>
         )
     }
-    componentDidUpdate(newProps,newState){
-        console.log(newProps,newState)
+    componentWillMount(){
+        if(localStorage.getItem('token')){
+            this.props.history.push({pathname:'/home'})
+        }
     }
     // 登录
     login(){
@@ -79,10 +81,8 @@ class Login extends Component{
             passWord:this.state.password
         }
         login(params).then((res)=>{
-            console.log(res);
             localStorage.setItem('token',res.data);
             localStorage.setItem('name',res.msg);
-            console.log(this.props)
             // this.props.history.push({path:'/order'})
         })
     }

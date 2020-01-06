@@ -86,6 +86,12 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   config => {
     //return config.data || {};
+    console.log(config,this);
+    if(config.data.msg == 'token is expired'){
+      localStorage.clear();
+      window.location=window.location.origin+'/login'
+      return config;
+    }
     return config || {};
   },
   error => {

@@ -1,6 +1,9 @@
-import axios from 'axios'
+// import axios from 'axios'
+// import React,{Component,Fragment} from 'react';
 import { sendGet, sendPost, sendPut, sendDelete }
 from '../../utils/base'
+// import {HashRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
+// import { history } from 'react-router'
 import actionType from "./actionType";
 // 登录
 export const login = (params) => sendPost("/admin/user/login", params);
@@ -11,13 +14,10 @@ export const getFamily = (dispatch, params) => {
         payload: new Promise(resolve => {
             sendGet("/admin/user/getUserList", params)
                 .then((res) => {
+                    console.log(res);
                     if (res.ok) {
                         resolve(res)
-                    } else {
-                        console.log(this)
-                        this.props.history.push({ path: '/login' })
                     }
-
                 })
         })
     })
@@ -29,7 +29,9 @@ export const detailFamily = (dispatch, params) => {
         payload: new Promise(resolve => {
             sendPost("/admin/user/getUserInfoByUserId", params)
                 .then((res) => {
-                    resolve(res)
+                    if(res.ok){
+                        resolve(res)
+                    }
                 })
         })
     })
