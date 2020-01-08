@@ -127,7 +127,7 @@ class Order extends Component{
                             </Row>
                             </Form>
                         </div>
-                        <Table columns={columns} dataSource={data} />
+                        <Table rowKey={record=>record.userId} columns={columns} dataSource={data} />
                     </div>
                 </div>
                 <Modal

@@ -1,4 +1,13 @@
 $background:#fff;
+.common{
+    background: $background;
+    color: #7F7F7F; 
+    padding-left: 20px;
+    line-height: 40px;
+    height: 40px;
+    min-width: 960px;
+    padding-right: 20px;
+}
 .supervise-container {
     height: 100%;
     display: flex;
@@ -8,28 +17,25 @@ $background:#fff;
     font-size: 14px;
     // min-width: 730px;
     .nav-container {
-        height: 40px;
-        background: $background;
-        color: #7F7F7F;
-        line-height: 40px;
-        padding-left: 20px;
-        min-width: 960px;
-        padding-right: 20px;
+        @extend .common;
         .add-btn{
             margin-right:10px;
         }
     }
-    .nav-container,
-    .family-detail {
-        height: 40px;
-        background: $background;
-        color: #7F7F7F;
-        line-height: 40px;
-        padding-left: 20px;
-        min-width: 960px;
-        padding-right: 20px;
+    .classify-operator{
+        margin-top:10px;
+        @extend .common;
+
+    }
+    .classify-list{
+        @extend .common;
+        height:auto;
+        .big-btn-add{
+            margin-bottom:20px;
+        }
     }
     .family-detail {
+        @extend .common;
         margin-top: 10px;
         display: flex;
         height: 50px;
@@ -45,6 +51,9 @@ $background:#fff;
         padding: 19px 20px 0;
         margin-top: 10px;
         background: $background;
+        .classify-small{
+            @extend .common;
+        }
         .form-header {
             width: 100%;
         }

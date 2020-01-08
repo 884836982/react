@@ -52,9 +52,9 @@ class Login extends Component{
                         />
                     </div>
                     <p className="forget-password">忘记密码?</p>
-                    <Link to="/order"><button className={username && password ? 'login-in' : 'login'} onClick={this.login}>
+                    <button className={username && password ? 'login-in' : 'login'} onClick={this.login}>
                         登录
-                    </button></Link>
+                    </button>
                     </section>
                     <footer className="footer">
                     <p className="footer-top">
@@ -71,7 +71,7 @@ class Login extends Component{
     }
     componentWillMount(){
         if(localStorage.getItem('token')){
-            this.props.history.push({pathname:'/home'})
+            this.props.history.push({pathname:'/order'})
         }
     }
     // 登录
@@ -83,23 +83,19 @@ class Login extends Component{
         login(params).then((res)=>{
             localStorage.setItem('token',res.data);
             localStorage.setItem('name',res.msg);
-            // this.props.history.push({path:'/order'})
+            this.props.history.push({pathname:'/order'})
         })
     }
     // 密码输入
     changePsd(e){
         this.setState({
             password:e.target.value
-        },()=>{
-            console.log(this.state.password);
         })
     }
     // 用户名输入
     changeUse(e){
         this.setState({
             username:e.target.value
-        },()=>{
-            console.log(this.state.username);
         })
     }
 }

@@ -7,6 +7,7 @@ from '../../utils/base'
 import actionType from "./actionType";
 // 登录
 export const login = (params) => sendPost("/admin/user/login", params);
+/************************家庭管理****** */
 // 获取家庭成员列表
 export const getFamily = (dispatch, params) => {
     dispatch({
@@ -57,6 +58,18 @@ export const deleteFamily = (params) => sendPost("/admin/user/del", params);
 // 新增成员
 export const addFamily = (params) => sendPost("/admin/user/add", params);
 
-// 分类管理
-//获取账单大类
-export const getClassifyList = (params) => sendPost('/admin/type/getBillTypes',params);
+/*********************分类管理*****************/ 
+//获取大类列表
+export const getBig = (params) => sendPost('/admin/type/getBillTypes',params);
+//新增大类
+export const addBig = (params) => sendPost('/admin/type/add',params);
+//修改大类
+export const updateBig = (params) => sendPost('/admin/type/update',params);
+//删除大类
+export const deleteBig = (params) => sendPost('/admin/type/del',params);
+//获取小类列表
+export const getSmall = (params) => sendPost('/admin/type/getTypeAndCategoryList',params);
+//新增小类
+export const addSmall = (params) => sendPost('/admin/category/add',params);
+//删除小类
+export const deleteSmall = (params) => sendPost('/admin/category/del',params);
