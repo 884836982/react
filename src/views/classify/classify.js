@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import { Row,Form,Input,Table,Button,Select,Modal } from 'antd';
-import {getBig,addBig,updateBig,deleteBig,getSmall,addSmall,deleteSmall} from '../../store/action/actionCreator'
+import {getBig,addBig,updateBig,deleteBig,getSmall,addSmall,deleteSmall,getSmallByBig} from '../../store/action/actionCreator'
 // import {connect} from 'react-redux'
 import "../../common/css/order.scss"
 const { Option } = Select;
@@ -9,9 +9,11 @@ class Classify extends Component{
     constructor(props){
         super(props);
          Classify._this = this;
+         console.log(props);
         this.state={
             visible:false,
-            typeName:'',
+            typeName:undefined,
+            typeId:undefined,
             bigClassify:[],//大类列表
             bigColums:[{
                 title:'序号',
@@ -39,6 +41,7 @@ class Classify extends Component{
             smallClassify:[],//小类列表
             smallColums:[{
                 title:'序号',
+                dataIndex:'index',
                 render: (text,record,index) => {
                     return `${index+1}`
                 }
@@ -60,12 +63,16 @@ class Classify extends Component{
                 }
 
             }],//小类table
+            smallList:[],
             titleSmall:'',
-            visibleSmall:false
+            visibleSmall:false,
+            categoryName:undefined,
+            categoryId:undefined
         }
     }
     render(){
-        let {visible,typeName,bigClassify,bigColums,title,smallClassify,} = this.state
+        // const { getFieldDecorator } = this.props.form;
+        let {visible,typeName,smallList,typeId,categoryId,bigClassify,bigColums,title,smallClassify,titleSmall,visibleSmall,smallColums,categoryName} = this.state
         return (
             <Fragment>
                 <div className="supervise-container">
@@ -85,26 +92,38 @@ class Classify extends Component{
                             <Row type="flex" justify="space-between">
                                 <Form.Item label="账单大类:">
                                     <Select
-                                        labelInValue
-                                        // defaultValue={{ key: 'lucy' }}
                                         placeholder="请选择大类"
-                                        style={{ width: 120 }}
-                                        // onChange={handleChange}
+                                        style={{ width: 200 }}
+                                        value={typeId} 
+                                        onChange={this.handleChange.bind(this,'typeId')}
                                     >
-                                        <Option value='all'>全部</Option>
+                                        <Option value='0'>全部</Option>
                                         {bigClassify.map(d => (
-                                            <Option value={d.typeId}>{d.typeName}</Option>
+                                            <Option key={d.typeId} value={d.typeId}>{d.typeName}</Option>
+                                            ))}
+                                    </Select>
+                                </Form.Item>
+                                <Form.Item label="账单小类:">
+                                    <Select
+                                        placeholder="请选择小类"
+                                        style={{ width: 200 }}
+                                        value={categoryId} 
+                                        onChange={this.handleChange.bind(this,'categoryId')}
+                                    >
+                                        <Option value='0'>全部</Option>
+                                        {smallList.map(d => (
+                                            <Option key={d.categoryId} value={d.categoryId}>{d.categoryName}</Option>
                                             ))}
                                     </Select>
                                 </Form.Item>
                                 <Form.Item >
-                                <Button onClick={this.addSmall.bind(this)}>新增</Button>
-                                <Button  onClick={this.getSmall.bind(this)}>查询</Button>
+                                <Button className="add-btn" type="primary" onClick={this.addSmall.bind(this)}>新增</Button>
+                                <Button type="primary" onClick={this.getSmall.bind(this)}>查询</Button>
                                 </Form.Item>
                             </Row>
                             </Form>
                         </div>
-                        {/* <Table columns={columns} dataSource={smallClassify} /> */}
+                        <Table rowKey={(record, index) => index} columns={smallColums} dataSource={smallClassify} />
                     </div>
                 </div>
                 <Modal
@@ -112,20 +131,39 @@ class Classify extends Component{
                 visible={visible}
                 onOk={this.hideModal.bind(this)}
                 onCancel={()=>this.setState({visible:false})}
+                className="classify-modal"
                 okText="确认"
                 cancelText="取消"
                 >
-                <Input onChange={this.handleChange.bind(this,'typeName')} value={typeName}></Input>
+                <Form.Item label="大类名称">
+                    <Input placeholder="请输入大类名称" onChange={this.handleChange.bind(this,'typeName')} value={typeName}></Input>
+                </Form.Item>
                 </Modal>
                 <Modal
                 title={titleSmall}
                 visible={visibleSmall}
                 onOk={this.hideModalSmall.bind(this)}
-                onCancel={()=>this.setState({visible:false})}
+                onCancel={()=>this.setState({visibleSmall:false})}
                 okText="确认"
                 cancelText="取消"
+                className="classify-modal"
                 >
-                <Input onChange={this.handleChange.bind(this,'typeName')} value={typeName}></Input>
+                <Form.Item label="账单大类">
+                    <Select
+                    placeholder="请选择大类"
+                    style={{ width: 200 }}
+                    value={typeId} 
+                    onChange={this.handleChange.bind(this,'typeId')}
+                    >
+                    <Option value='0'>全部</Option>
+                    {bigClassify.map(d => (
+                        <Option key={d.typeId} value={d.typeId}>{d.typeName}</Option>
+                        ))}
+                    </Select>  
+                </Form.Item>
+                <Form.Item label="小类名称">
+                    <Input onChange={this.handleChange.bind(this,'categoryName')} placeholder="请输入小类名称" value={categoryName}></Input>
+                </Form.Item>               
                 </Modal>
             </Fragment>
         )
@@ -134,13 +172,32 @@ class Classify extends Component{
         this.getBig();
         this.getSmall();
     }
-    //大类弹出输入框发生变化
+    //选择输入框发生变化
     handleChange(val,e){
         var obj = {};
-        if(val == 'typeName'){
+        if(val == 'typeId'){
+            obj[val] = e
+            this.getSmallByBig(e); 
+        }else if(val == 'categoryId'){
+            obj[val] = e
+        }else if(val == 'categoryName' || val == 'typeName'){
             obj[val] = e.target.value
         }
         this.setState(obj);
+    }
+    //根据大类id获取小类
+    getSmallByBig(id){
+        let params = {
+            typeId:id
+        }
+        getSmallByBig(params)
+        .then((res)=>{
+            if(res.ok){
+                this.setState({
+                    smallList:res.data
+                })
+            }
+        })
     }
     //大类弹窗确定
     hideModal(){
@@ -173,6 +230,27 @@ class Classify extends Component{
             })
         }
     }
+    //小类弹窗
+    hideModalSmall(){
+        if(this.state.titleSmall=='新增'){
+            let params = {
+                typeId:this.state.typeId,
+                categoryName:this.state.categoryName
+            }
+            addSmall(params)
+            .then((res)=>{
+                if(res.ok){
+                    this.setState({
+                        visibleSmall:false,
+                        typeId:undefined,
+                        categoryName:undefined,
+                    })
+                    this.getBig();
+                    this.getSmall();
+                }
+            })
+        }
+    }
     // 获取大类列表
     getBig(){
         getBig()
@@ -188,8 +266,8 @@ class Classify extends Component{
     addBig(){
         this.setState({
             title:'新增',
-            typeName:'',
-            typeId:'',
+            typeName:null,
+            typeId:null,
             visible:true
         })
     }
@@ -224,21 +302,54 @@ class Classify extends Component{
     }
     // 获取小类列表
     getSmall(){
-        getSmall()
+        let params = {
+            typeId:this.state.typeId,
+            categoryId:this.state.categoryId
+        }
+        getSmall(params)
         .then((res)=>{
-            console.log(res);
             if(res.ok){
-
+                this.setState({
+                    smallClassify:res.data
+                })
+            }else{
+                this.setState({
+                    smallClassify:res.data
+                }) 
             }
         })
     }
     // 新增小类
     addSmall(val){
-        
+        this.setState({
+            titleSmall:'新增',
+            typeId:undefined,
+            typeName:undefined,
+            categoryId:undefined,
+            categoryName:undefined,
+            visibleSmall:true
+        })
     }
     // 删除小类
     deleteSmall(val){
-
+        console.log(val);
+        confirm({
+            title: '删除',
+            content: '确定删除吗?',
+            okText: '确定',
+            okType: 'danger',
+            cancelText: '取消',
+            onOk() {
+             deleteBig({categoryId:val.categoryId})
+              .then((res) => {
+                if(res.ok){
+                   Classify._this.getSmall();
+                }
+              })
+            },
+            onCancel() {
+            },
+          });
     }
 }
 

@@ -18,9 +18,10 @@ $background:#fff;
     // min-width: 730px;
     .nav-container {
         @extend .common;
-        .add-btn{
-            margin-right:10px;
-        }
+        
+    }
+    .add-btn{
+        margin-right:10px;
     }
     .classify-operator{
         margin-top:10px;
@@ -53,6 +54,7 @@ $background:#fff;
         background: $background;
         .classify-small{
             @extend .common;
+            min-width:auto;
         }
         .form-header {
             width: 100%;
@@ -121,6 +123,7 @@ $background:#fff;
         cursor:pointer;
     }
 }
+
 .modal{
     .modal-form{
         display:flex;
@@ -134,5 +137,11 @@ $background:#fff;
         .modal-content{
             flex:1;
         }
+    }
+}
+.classify-modal{
+    .ant-form-item{
+        margin-bottom:10px;
+        display:flex;
     }
 }

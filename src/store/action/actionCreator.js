@@ -73,3 +73,17 @@ export const getSmall = (params) => sendPost('/admin/type/getTypeAndCategoryList
 export const addSmall = (params) => sendPost('/admin/category/add',params);
 //删除小类
 export const deleteSmall = (params) => sendPost('/admin/category/del',params);
+//根据大类id获取小类
+export const getSmallByBig = (params) => sendPost('/admin/category/getCategoryListByTypeId',params);
+
+/*******************************账单管理*****************/
+//获取账单列表
+export const getBillList = (params) => sendPost('/admin/bill/list',params);
+//根据billId获取账单详情
+export const billDetails = (params) => sendPost('/admin/bill/getBillByBillId',params);
+//删除账单
+export const deleteBill = (params) => sendPost('/admin/bill/del',params);
+//新增账单
+export const addBill = (params) => sendPost('/admin/bill/add',params);
+//修改账单
+export const updateBill = (params) => sendPost('/admin/bill/update',params);

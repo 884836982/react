@@ -5,6 +5,7 @@ import {getFamily,detailFamily,addFamily,deleteFamily,updateFamily} from '../../
 import {connect} from 'react-redux'
 import "../../common/css/order.scss"
 import 'moment/locale/zh-cn';
+import {format} from '../../utils/format'
 const { Option } = Select;
 const { confirm } = Modal;
 moment.locale('zh-cn');
@@ -304,19 +305,4 @@ const mapStateToProps = (state)=>({
     data:state.reducer.data,
     Detail:state.reducer.Detail,
 })
-// function 
-function format(date){
-//date是传入的时间
-    let d = new Date(date);
-
-    let month = (d.getMonth() + 1) < 10 ? '0'+(d.getMonth() + 1) : (d.getMonth() + 1);
-    let day = d.getDate()<10 ? '0'+d.getDate() : d.getDate();
-    // let hours = d.getHours()<10 ? '0'+d.getHours() : d.getHours();
-    // let min = d.getMinutes()<10 ? '0'+d.getMinutes() : d.getMinutes();
-    // let sec = d.getSeconds()<10 ? '0'+d.getSeconds() : d.getSeconds();
-
-    let times=d.getFullYear() + '-' + month + '-' + day ;
-
-    return times
-}
 export default connect(mapStateToProps,mapDispatchToProps)(Order);
