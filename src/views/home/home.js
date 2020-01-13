@@ -55,7 +55,7 @@ class Home extends Component{
                            
                         </p>
                         <p className="footer-bottom">
-                            Copyright&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2018-2019&nbsp;&nbsp;&nbsp;&nbsp;All&nbsp;&nbsp;Rights&nbsp;京XXX号&nbsp;&nbsp;京公网备案XXX
+                           
                         </p>
                     </Footer>
                 </div>
