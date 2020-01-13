@@ -34,6 +34,10 @@ $background:#fff;
             margin-bottom: 20px;
         }
     }
+    .ant-table-tbody > tr > td {
+        padding: 8px 15px;
+        overflow-wrap: break-word;
+    }
     .family-detail {
         @extend .common;
         margin-top: 10px;

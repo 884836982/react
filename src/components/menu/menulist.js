@@ -48,6 +48,7 @@ class MenuList extends Component{
     };
     componentWillMount(){
         var key = window.location.href;
+        console.log(key);
         if(key.indexOf('/classify') !==-1){
             this.setState({
                 defaultKey:['classification']

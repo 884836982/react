@@ -36,12 +36,12 @@ class App extends Component{
       this.setState({
         isLogin:true
       })
-      this.props.history.push({pathname:'/home'})
+      // this.props.history.push({pathname:'/home'})
     }else{
       this.setState({
         isLogin:false
       })
-      this.props.history.push({pathname:'/login'})
+      // this.props.history.push({pathname:'/login'})
     }
   }
 }
