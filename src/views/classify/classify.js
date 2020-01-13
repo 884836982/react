@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import { Row,Form,Input,Table,Button,Select,Modal } from 'antd';
-import {getBig,addBig,updateBig,deleteBig,getSmall,addSmall,deleteSmall,getSmallByBig} from '../../store/action/actionCreator'
+import {getBig,addBig,updateBig,deleteBig,getSmall,updateSmall,addSmall,deleteSmall,getSmallByBig} from '../../store/action/actionCreator'
 // import {connect} from 'react-redux'
 import "../../common/css/order.scss"
 const { Option } = Select;
@@ -9,7 +9,6 @@ class Classify extends Component{
     constructor(props){
         super(props);
          Classify._this = this;
-         console.log(props);
         this.state={
             visible:false,
             typeName:undefined,
@@ -57,6 +56,7 @@ class Classify extends Component{
                 render(text, record) {
                     return (
                         <Fragment>
+                            <span className="update-btn" onClick={()=>Classify._this.updateSmall(record)}>修改</span>
                             <span className="delete-btn" onClick={()=>Classify._this.deleteSmall(record)}>删除</span>
                         </Fragment>
                     )
@@ -177,6 +177,7 @@ class Classify extends Component{
         var obj = {};
         if(val == 'typeId'){
             obj[val] = e
+            obj['categoryId']=undefined
             this.getSmallByBig(e); 
         }else if(val == 'categoryId'){
             obj[val] = e
@@ -223,7 +224,8 @@ class Classify extends Component{
             .then((res)=>{
                 if(res.ok){
                     this.setState({
-                        visible:false
+                        visible:false,
+                        typeId:undefined
                     })
                     this.getBig();
                 }
@@ -244,6 +246,26 @@ class Classify extends Component{
                         visibleSmall:false,
                         typeId:undefined,
                         categoryName:undefined,
+                    })
+                    this.getBig();
+                    this.getSmall();
+                }
+            })
+        }else{
+            let params = {
+                typeId:this.state.typeId,
+                categoryId:this.state.categoryId,
+                categoryName:this.state.categoryName
+            }
+            updateSmall(params)
+            .then((res)=>{
+                if(res.ok){
+                    this.setState({
+                        visibleSmall:false,
+                        typeId:undefined,
+                        categoryId:undefined,
+                        categoryName:undefined,
+                        typeName:undefined
                     })
                     this.getBig();
                     this.getSmall();
@@ -329,10 +351,9 @@ class Classify extends Component{
             categoryName:undefined,
             visibleSmall:true
         })
-    }
-    // 删除小类
+    } 
+    //删除小类
     deleteSmall(val){
-        console.log(val);
         confirm({
             title: '删除',
             content: '确定删除吗?',
@@ -340,7 +361,7 @@ class Classify extends Component{
             okType: 'danger',
             cancelText: '取消',
             onOk() {
-             deleteBig({categoryId:val.categoryId})
+             deleteSmall({categoryId:val.categoryId})
               .then((res) => {
                 if(res.ok){
                    Classify._this.getSmall();
@@ -350,6 +371,17 @@ class Classify extends Component{
             onCancel() {
             },
           });
+    }
+    //修改小类
+    updateSmall(val){
+        this.setState({
+            titleSmall:'修改',
+            typeId:val.typeId,
+            typeName:val.typeName,
+            categoryId:val.categoryId,
+            categoryName:val.categoryName,
+            visibleSmall:true
+        })
     }
 }
 

@@ -1,13 +1,14 @@
 $background:#fff;
-.common{
+.common {
     background: $background;
-    color: #7F7F7F; 
+    color: #7F7F7F;
     padding-left: 20px;
     line-height: 40px;
     height: 40px;
     min-width: 960px;
     padding-right: 20px;
 }
+
 .supervise-container {
     height: 100%;
     display: flex;
@@ -18,21 +19,19 @@ $background:#fff;
     // min-width: 730px;
     .nav-container {
         @extend .common;
-        
     }
-    .add-btn{
-        margin-right:10px;
+    .add-btn {
+        margin-right: 10px;
     }
-    .classify-operator{
-        margin-top:10px;
+    .classify-operator {
+        margin-top: 10px;
         @extend .common;
-
     }
-    .classify-list{
+    .classify-list {
         @extend .common;
-        height:auto;
-        .big-btn-add{
-            margin-bottom:20px;
+        height: auto;
+        .big-btn-add {
+            margin-bottom: 20px;
         }
     }
     .family-detail {
@@ -52,9 +51,9 @@ $background:#fff;
         padding: 19px 20px 0;
         margin-top: 10px;
         background: $background;
-        .classify-small{
+        .classify-small {
             @extend .common;
-            min-width:auto;
+            min-width: auto;
         }
         .form-header {
             width: 100%;
@@ -111,37 +110,39 @@ $background:#fff;
     .ant-form-item {
         display: flex;
     }
-    .update-btn{
-        color:#52c41a;
+    .update-btn {
+        color: #52c41a;
         cursor: pointer;
         text-decoration: underline;
-        margin-right:10px;
+        margin-right: 10px;
     }
-    .delete-btn{
-        color:red;
+    .delete-btn {
+        color: red;
         text-decoration: underline;
-        cursor:pointer;
+        cursor: pointer;
     }
 }
 
-.modal{
-    .modal-form{
-        display:flex;
+.modal {
+    .modal-form {
+        display: flex;
         align-items: center;
-        margin-bottom:10px;
-        .modal-title{
-            width:80px;
-            text-align:right;
-            margin-right:20px;
+        margin-bottom: 10px;
+        .modal-title {
+            width: 80px;
+            text-align: right;
+            margin-right: 20px;
         }
-        .modal-content{
-            flex:1;
+        .modal-content {
+            flex: 1;
         }
     }
 }
-.classify-modal{
-    .ant-form-item{
-        margin-bottom:10px;
-        display:flex;
+
+.classify-modal,
+.bill-modal {
+    .ant-form-item {
+        margin-bottom: 10px;
+        display: flex;
     }
 }

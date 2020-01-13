@@ -1,25 +1,24 @@
 import React,{Component,Fragment} from 'react';
 import { Menu, Icon } from 'antd';
 import "../../common/css/menulist.scss"
-// const { SubMenu } = Menu;
-import {NavLink} from 'react-router-dom'
+import {NavLink,withRouter} from 'react-router-dom'
 class MenuList extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             defaultKey:['family']
         }
     }
     render(){
         let {defaultKey} = this.state;
-        console.log(defaultKey)
         return (
             <Fragment>
                 <Menu
                 mode="inline"
                 className="menu-list"
                 defaultSelectedKeys={defaultKey}
-                // onClick={selectMenu}
+                selectedKeys={defaultKey}
+                onClick={this.selectMenu.bind(this)}
                 >
                 <div className="supervise-back">
                     <img className="supervise" src={require("../../common/img/supervise.png")} />
@@ -48,15 +47,35 @@ class MenuList extends Component{
         )
     };
     componentWillMount(){
-        var key = window.location.href.split('#')[1]
-        switch(key){
+        var key = window.location.href;
+        if(key.indexOf('/classify') !==-1){
+            this.setState({
+                defaultKey:['classification']
+            }); 
+        }else if(key.indexOf('/order') !==-1){
+            this.setState({
+                defaultKey:['family']
+            });
+        }else if(key.indexOf('/bill') !==-1){
+            this.setState({
+                defaultKey:['bill']
+            });
+        }
+    }
+    selectMenu(e){
+        this.setState({
+            defaultKey:e.keyPath
+        })  
+    }
+    componentWillReceiveProps(nextProps) {
+        var path = nextProps.location.pathname;
+        switch(path){
             case '/classify':
                 this.setState({
                     defaultKey:['classification']
-                },()=>{
                 });
                 break
-            case '/family':
+            case '/order' :
                 this.setState({
                     defaultKey:['family']
                 });
@@ -64,11 +83,9 @@ class MenuList extends Component{
             case '/bill':
                 this.setState({
                     defaultKey:['bill']
-                },()=>{
-
                 });
                 break
         }
-    }
+     }   
 }
-export default MenuList;
+export default withRouter(MenuList);

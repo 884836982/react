@@ -58,11 +58,10 @@ class Login extends Component{
                     </section>
                     <footer className="footer">
                     <p className="footer-top">
-                        北京学而思教师基地有限公司&nbsp;&nbsp;&nbsp;地址：XXX&nbsp;&nbsp;&nbsp;关于我们
-                        / 联系我们 / 加入我们 / 支付方式 / 隐私保护政策
+                       
                     </p>
                     <p className="footer-bottom">
-                        Copyright&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2018-2019&nbsp;&nbsp;www.jiaoshijidi.com&nbsp;&nbsp;All&nbsp;&nbsp;Rights&nbsp;京XXX号&nbsp;&nbsp;京公网备案XXX
+                       
                     </p>
                     </footer>
                 </div>

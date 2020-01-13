@@ -38,7 +38,7 @@ class Order extends Component{
                 dataIndex: 'sex',
                 key: 'sex',
                 render:(text)=>{
-                    if(text.sex == 1){
+                    if(text == 1){
                         return '女'
                     }
                     return '男'
@@ -182,7 +182,7 @@ class Order extends Component{
         if(prevProps.Detail !== this.props.Detail){
             if(this.state.flag){
                 this.setState({
-                    name:Order._this.props.Detail.passWord,
+                    name:Order._this.props.Detail.name,
                     passWord:Order._this.props.Detail.passWord,
                     sex:Order._this.props.Detail.sex,
                     birthday:Order._this.props.Detail.birthday,
