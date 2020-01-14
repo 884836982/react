@@ -150,14 +150,16 @@ class Bill extends Component{
                         <Table 
                             pagination={{
                                 defaultPageSize:10,
-                                showTotal: total => `共 ${total} 条数据`,
+                                total:total,
+                                showTotal: () => `共 ${total} 条数据`,
                                 showSizeChanger:true,
                                 pageSizeOptions: ['10', '20', '30', '50'],
+                                onChange:this.onShowSizeChange.bind(this),
                                 onShowSizeChange:(current, pageSize)=>{Bill._this.onShowSizeChange(current,pageSize)}
                               }
                             }
                             rowKey={(record) => record.billId}
-                            // onChange={this.handleTable.bind(this)} 
+                            
                             columns={billColumns} 
                             dataSource={billData} />
                     </div>
@@ -341,6 +343,17 @@ class Bill extends Component{
             }
         })
     }
+    // 页码改变的回调，参数是改变后的页码及每页条数
+    // handleTable(pagination,pageSize){
+    //     console.log(pageSize)
+    //     this.setState({
+    //         pageSize:this.state.pageSize,
+    //         currentPage:pagination
+    //     },()=>{
+    //         this.getBillList();
+    //     })
+        
+    // }
     //获取账单列表
     getBillList(){
         let params = {
