@@ -107,20 +107,6 @@ class Order extends Component{
                             label-width="0"
                             >
                             <Row type="flex" justify="space-between">
-                                {/* <Form.Item label="法律主体:">
-                                <Input
-                                    placeholder="请输入法律主体"
-                                    defaultValue=""
-                                />
-                                    <i className="supervise-search" slot="suffix" >
-                                    </i>
-                                </Form.Item>
-                                <Form.Item label="订单日期:">
-                                <RangePicker
-                                placeholder={['开始日期', '结束日期']}
-                                format="YYYY-MM-DD"
-                                />
-                                </Form.Item> */}
                                 <Form.Item >
                                     <Button type="primary" className="add-btn" onClick={this.addFamily.bind(this,'add')} >新增</Button>
                                     <Button  type="primary" onClick={this.props.getFamilyList} >查询</Button>
