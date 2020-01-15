@@ -2,7 +2,7 @@ import React,{Component,Fragment} from 'react';
 import { Row,Form,Input,Table,Button,Select,Modal } from 'antd';
 import {getBig,addBig,updateBig,deleteBig,getSmall,updateSmall,addSmall,deleteSmall,getSmallByBig} from '../../store/action/actionCreator'
 // import {connect} from 'react-redux'
-import "../../common/css/order.scss"
+import "@/common/css/order.scss"
 const { Option } = Select;
 const { confirm } = Modal;
 class Classify extends Component{

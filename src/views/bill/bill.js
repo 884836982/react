@@ -1,10 +1,10 @@
 import React,{Component,Fragment} from 'react';
 import { Row,Form,Input,Table,Modal,DatePicker,Button,Select, } from 'antd';
 import moment from 'moment';
-import {getBillList,getBig,billDetails,getSmallByBig,addBill,updateBill,deleteBill} from '../../store/action/actionCreator'
+import {getBillList,getBig,billDetails,getSmallByBig,addBill,updateBill,deleteBill} from '@/store/action/actionCreator'
 import {connect} from 'react-redux'
-import "../../common/css/order.scss"
-import {format} from '../../utils/format'
+import "@/common/css/order.scss"
+import {format} from '@/utils/format'
 import 'moment/locale/zh-cn';
 moment.locale('zh-cn');
 const { RangePicker } = DatePicker;

@@ -2,15 +2,15 @@ import React ,{Component, Fragment} from "react";
 // import {connect} from "react-redux";
 // import Header
 import { Layout } from 'antd';
-import MenuList from '../../components/menu/menulist'
-import Order from '../order/order'
-import Classify from '../classify/classify'
-import Bill from '../bill/bill';
+import MenuList from '@/components/menu/menulist'
+import Order from '@/views/order/order'
+import Classify from '@/views/classify/classify'
+import Bill from '@/views/bill/bill';
 import {HashRouter as Router,Route,Switch,Redirect,withRouter} from 'react-router-dom'
 import { Link } from 'react-router-dom';
-import "../../common/css/home.scss"
+import "@/common/css/home.scss"
 import {Provider} from 'react-redux'
-import store from '../../store'
+import store from '@/store'
 const { Header, Footer, Sider, Content } = Layout;
 class Home extends Component{
     constructor(props){
@@ -27,7 +27,7 @@ class Home extends Component{
                             <div className="header-login">
                                 <span className="title">运营后台</span>
                                 <p className="user-name">
-                                    <img src={require("../../common/img/initAvator.svg")} alt="图片加载失败" /><span>{localStorage.getItem('name')}</span>
+                                    <img src={require("@/common/img/initAvator.svg")} alt="图片加载失败" /><span>{localStorage.getItem('name')}</span>
                                 </p>
                                 <Link to="/login"><span className="login-out" onClick={this.logout.bind(this)}>退出</span></Link>
                             </div>

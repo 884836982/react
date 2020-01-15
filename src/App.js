@@ -1,10 +1,10 @@
 import React ,{Component, Fragment}from 'react';
 import {HashRouter as Router,Route,Switch,Redirect,withRouter,BrowserRouter} from 'react-router-dom'
-import Home from './views/home/home';
-import Login from './views/login/login'
+import Home from '@/views/home/home';
+import Login from '@/views/login/login'
 // import { withRouter } from 'react-router-dom'
 import "antd/dist/antd.css"
-import "./common/css/reset.css"
+import "@/common/css/reset.css"
 class App extends Component{
   constructor(props){
     super(props);

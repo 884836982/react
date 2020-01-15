@@ -1,7 +1,7 @@
 import React,{Component,Fragment} from 'react';
-import "../../common/css/login.scss"
-import {login} from '../../store/action/actionCreator'
-import { Link } from 'react-router-dom';
+import "@/common/css/login.scss"
+import {login} from '@/store/action/actionCreator'
+// import { Link } from 'react-router-dom';
 import {Input} from 'antd'
 class Login extends Component{
     constructor(props){
@@ -9,10 +9,10 @@ class Login extends Component{
         this.state = {
             username: "",
             password: "",
-            userSrcN: require("../../common/img/userN.svg"),
-            userSrcY: require("../../common/img/userY.svg"),
-            passwordSrcN: require("../../common/img/passwordN.svg"),
-            passwordSrcY: require("../../common/img/passwordY.svg"),
+            userSrcN: require("@/common/img/userN.svg"),
+            userSrcY: require("@/common/img/userY.svg"),
+            passwordSrcN: require("@/common/img/passwordN.svg"),
+            passwordSrcY: require("@/common/img/passwordY.svg"),
         }
         this.login = this.login.bind(this)
         this.changeUse = this.changeUse.bind(this)
@@ -29,7 +29,7 @@ class Login extends Component{
                         <i>欢迎登录</i>
                     </p>
                     <p className="right">
-                        <img className="user-avator" src="../../common/img/avator.svg" alt="" />
+                        <img className="user-avator" src="@/common/img/avator.svg" alt="" />
                         <span className="login-status">未登录</span>
                     </p>
                     </header>
