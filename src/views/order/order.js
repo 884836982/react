@@ -3,7 +3,7 @@ import { Row,Form,Input,Table,DatePicker,Button,Modal ,Select} from 'antd';
 import moment from 'moment';
 import {getFamily,detailFamily,addFamily,deleteFamily,updateFamily} from '../../store/action/actionCreator'
 import {connect} from 'react-redux'
-import "../../common/css/order.scss"
+import "@/common/css/order.scss"
 import 'moment/locale/zh-cn';
 import {format} from '../../utils/format'
 const { Option } = Select;
