@@ -1,61 +1,98 @@
 $background:#fff;
+.common {
+    background: $background;
+    color: #7F7F7F;
+    padding-left: 20px;
+    line-height: 40px;
+    height: 40px;
+    min-width: 960px;
+    padding-right: 20px;
+}
 
-.supervise-container{
+.supervise-container {
     height: 100%;
     display: flex;
     flex-direction: column;
-    font-family:PingFangSC-Regular,PingFang SC,sans-serif;
-    font-weight:400;
-    font-size:14px;
+    font-family: PingFangSC-Regular, PingFang SC, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
     // min-width: 730px;
-    .nav-container{
-        height:40px;
-        background:$background;
-        color:#7F7F7F;
-        line-height:40px;
-        padding-left:20px; 
-        min-width:960px; 
-        padding-right:20px; 
+    .nav-container {
+        @extend .common;
     }
-    .supervise-list{
-        flex:1;
-        padding:19px 20px 0;
-        margin-top:10px;
-        background:$background;
-        .form-header{
-            width:100%;
+    .add-btn {
+        margin-right: 10px;
+    }
+    .classify-operator {
+        margin-top: 10px;
+        @extend .common;
+    }
+    .classify-list {
+        @extend .common;
+        height: auto;
+        .big-btn-add {
+            margin-bottom: 20px;
         }
-        .supervise-search{
-            display:block;
-            width:14px;
-            height:14px;
-            background:url('../img/search.svg') no-repeat;
+    }
+    .ant-table-tbody > tr > td {
+        padding: 8px 15px;
+        overflow-wrap: break-word;
+    }
+    .family-detail {
+        @extend .common;
+        margin-top: 10px;
+        display: flex;
+        height: 50px;
+        line-height: 50px;
+        justify-content: space-between;
+        align-items: center;
+        p {
+            margin: 0;
+        }
+    }
+    .supervise-list {
+        flex: 1;
+        padding: 19px 20px 0;
+        margin-top: 10px;
+        background: $background;
+        .classify-small {
+            @extend .common;
+            min-width: auto;
+        }
+        .form-header {
+            width: 100%;
+        }
+        .supervise-search {
+            display: block;
+            width: 14px;
+            height: 14px;
+            background: url('../img/search.svg') no-repeat;
             background-size: 100%;
             position: absolute;
-            top:3px;
-            right:10px;
+            top: 3px;
+            right: 10px;
         }
     }
-    .supervise-detail{
-        flex:1;
-        padding:19px 20px 0;
-        background:$background;
-        margin-top:16px;
-        h2{
-            font-size:14px;
-            font-weight:500;
-            color:rgba(51,51,51,1);
-            margin-bottom:16px;
+    .supervise-detail {
+        flex: 1;
+        padding: 19px 20px 0;
+        background: $background;
+        margin-top: 16px;
+        h2 {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(51, 51, 51, 1);
+            margin-bottom: 16px;
         }
-        .detail{
-            h2{
-                margin-bottom:13px;
+        .detail {
+            h2 {
+                margin-bottom: 13px;
             }
-            .grid-content{
-                font-weight:400;
+            .grid-content {
+                font-weight: 400;
             }
-            .grid{
-                margin-bottom:13px;
+            .grid {
+                margin-bottom: 13px;
             }
             padding-bottom:17px;
             border-bottom:1px solid #C0C4CC;
@@ -63,17 +100,53 @@ $background:#fff;
         }
     }
 }
-.supervise-container{
-    .check-detail{
-        float:left;
+
+.supervise-container {
+    .check-detail {
+        float: left;
         background: none;
         color: #3296FA;
         text-align: left;
     }
-    .supervise-list{
-        min-width:960px;
+    .supervise-list {
+        min-width: 960px;
     }
-    .ant-form-item{
-        display:flex;
+    .ant-form-item {
+        display: flex;
+    }
+    .update-btn {
+        color: #52c41a;
+        cursor: pointer;
+        text-decoration: underline;
+        margin-right: 10px;
+    }
+    .delete-btn {
+        color: red;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.modal {
+    .modal-form {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        .modal-title {
+            width: 80px;
+            text-align: right;
+            margin-right: 20px;
+        }
+        .modal-content {
+            flex: 1;
+        }
+    }
+}
+
+.classify-modal,
+.bill-modal {
+    .ant-form-item {
+        margin-bottom: 10px;
+        display: flex;
     }
 }
