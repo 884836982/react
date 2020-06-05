@@ -29,13 +29,8 @@ class Bill extends Component{
                     return `${index+1}`
                 }
             },{
-<<<<<<< HEAD
                 title:'账单日期',
                 dataIndex:'billTime',
-=======
-                title:'创建日期',
-                dataIndex:'createTime',
->>>>>>> 3ad2ba6f517f4f9888d3dd7fb3ef6fe9e5a686b8
                 render:(text,record)=>{
                     return format(text,'YYYY-MM-DD')
                 }
@@ -55,7 +50,6 @@ class Bill extends Component{
                 title:'账户余额',
                 dataIndex:'billBalance'
             },{
-<<<<<<< HEAD
                 title:'创建人',
                 dataIndex:'NAME'
             },{
@@ -64,20 +58,10 @@ class Bill extends Component{
             },{
                 title:'创建日期',
                 dataIndex:'createTime',
-=======
-                title:'账单日期',
-                dataIndex:'billTime',
->>>>>>> 3ad2ba6f517f4f9888d3dd7fb3ef6fe9e5a686b8
                 render:(text,record)=>{
                     return format(text,'YYYY-MM-DD')
                 }
             },{
-<<<<<<< HEAD
-=======
-                title:'备注',
-                dataIndex:'mark'
-            },{
->>>>>>> 3ad2ba6f517f4f9888d3dd7fb3ef6fe9e5a686b8
                 title: '操作',
                 key: 'operator',
                 render(text, record) {
@@ -382,11 +366,7 @@ class Bill extends Component{
             endBillTime:this.state.endTime,
             billType:this.state.typeId,
             billCategory:this.state.categoryId,
-<<<<<<< HEAD
             billRecPayType:this.state.billType,
-=======
-            billRecPayType:this.state.billType
->>>>>>> 3ad2ba6f517f4f9888d3dd7fb3ef6fe9e5a686b8
         }
         getBillList(params)
         .then((res)=>{
